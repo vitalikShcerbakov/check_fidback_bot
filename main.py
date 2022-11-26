@@ -134,8 +134,8 @@ def send_message():
     data = read_from_datebase()
     for user in users_id:
         for line_text in data:
-            a = (sum(map(int, line_text[2:5])))
-            if sum(map(int, line_text[2:5])) < 12:
+            fidback = list(map(int, line_text[2:5]))
+            if [True for i in fidback if i < 4]:
                 bot.send_message(user, f'{line_text[1]} - есть плохой отзыв',)
                 print(line_text[1], a, line_text[2:5])
 
@@ -227,12 +227,10 @@ def func(message):
     elif message.text == 'Просмотр товаров с плохими отзывами':
         answer = read_from_datebase()
         for line in answer:
-            # if line[3] == 'False':
-            #     bot.send_message(message.chat.id, f'{line[1]}')
-            a = (sum(map(int, line[2:5])))
-            if sum(map(int, line[2:5])) < 12:
-                bot.send_message(message.chat.id, f'{line_text[1]} - есть плохой отзыв',)
-                print(line[1], a, line[2:5])    
+            fidback = list(map(int, line[2:5]))
+            if [True for i in fidback if i < 4]:
+                bot.send_message(message.chat.id, f'{line[1]} - есть плохой отзыв',)
+                print(line[1], line[2:5])    
 
         # if all(list([True if val[3] == 'True' else False for val in answer])):
         #     bot.send_message(message.chat.id, 'Нет товаров c плохими отзывами 😉')
