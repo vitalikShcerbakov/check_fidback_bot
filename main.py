@@ -84,6 +84,8 @@ def check_fidback():
             except Exception as e:
                 print('Жопа')
             print(line)
+            date_now = datetime.now()
+            line.append(f'{date_now:%Y-%m-%d %H:%M:%S}')
             list_vendor_code.append(line)
     write_to_database(list_vendor_code)
     print('Новый список проверен и загружен')
@@ -228,18 +230,18 @@ def func(message):
             if line[3] == 'False':
                 bot.send_message(message.chat.id, f'{line[1]}')
 
-        if all(list([True if val[3] == 'True' else False for val in answer])):
-            bot.send_message(message.chat.id, 'Нет товаров c плохими отзывами 😉')
-        else:
-            bot.send_message(message.chat.id, 'Срочно что то сделать 😕')
-        bot.send_message(
-            message.chat.id, f'Время последней проверки: {line[-1]}')
+        # if all(list([True if val[3] == 'True' else False for val in answer])):
+        #     bot.send_message(message.chat.id, 'Нет товаров c плохими отзывами 😉')
+        # else:
+        #     bot.send_message(message.chat.id, 'Срочно что то сделать 😕')
+        # bot.send_message(
+        #     message.chat.id, f'Время последней проверки: {line[-1]}')
 
 
     elif message.text == 'Полный просмотр':
         answer = read_from_datebase()
         for line in answer:
-            bot.send_message(message.chat.id, f'{line[0]} {line[1]} {line[4]}')
+            bot.send_message(message.chat.id, f'{line[0]} {line[1]} {line[2:5]}')
         bot.send_message(
             message.chat.id, f'Время последней проверки: {line[-1]}')
             
