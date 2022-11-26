@@ -1,0 +1,10 @@
+__pycache__
+venv
+.idea
+
+vendor_code
+
+settings.py
+test.py
+datebase.csv
+users_datebase.txt
