@@ -136,7 +136,7 @@ def send_message():
         for line_text in data:
             a = (sum(map(int, line_text[2:5])))
             if sum(map(int, line_text[2:5])) < 12:
-                bot.send_message(user, f'line_text[1] - есть плохой отзыв',)
+                bot.send_message(user, f'{line_text[1]} - есть плохой отзыв',)
                 print(line_text[1], a, line_text[2:5])
 
     
@@ -231,7 +231,7 @@ def func(message):
             #     bot.send_message(message.chat.id, f'{line[1]}')
             a = (sum(map(int, line[2:5])))
             if sum(map(int, line[2:5])) < 12:
-                bot.send_message(message.chat.id, f'line_text[1] - есть плохой отзыв',)
+                bot.send_message(message.chat.id, f'{line_text[1]} - есть плохой отзыв',)
                 print(line[1], a, line[2:5])    
 
         # if all(list([True if val[3] == 'True' else False for val in answer])):
