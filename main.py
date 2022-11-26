@@ -137,7 +137,7 @@ def send_message():
             fidback = list(map(int, line_text[2:5]))
             if [True for i in fidback if i < 4]:
                 bot.send_message(user, f'{line_text[1]} - есть плохой отзыв',)
-                print(line_text[1], a, line_text[2:5])
+                print(line_text[1], line_text[2:5])
 
     
 def notification_on_off(chad_id, flag):
