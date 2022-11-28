@@ -31,6 +31,16 @@ ADMIN_LIST = [
     631613499,   # Наська
     ]
 
+def crutch(lst):
+    while True:
+        if len(lst) < 5:
+            lst.append('None')
+        else:
+            return lst
+    
+        
+
+
 def check_fidback():
     result = read_from_datebase()
     list_vc: list[int] = [int(val[0]) for val in result if val is not None]
@@ -79,12 +89,13 @@ def check_fidback():
                         if count == 3:
                             break
                     except Exception as e:
-                        line.append('error')
-                        print('Жопа')            
+                        print(f'Error get_attribute("class") - {e}')
+                        line.append('error')            
             except Exception as e:
-                print('Жопа')
-            print(line)
+                print(f'browser.find_elements(By.CLASS_NAME, cls_name2) - {e}')
+            line = crutch(line)
             date_now = datetime.now()
+
             line.append(f'{date_now:%Y-%m-%d %H:%M:%S}')
             list_vendor_code.append(line)
     write_to_database(list_vendor_code)
