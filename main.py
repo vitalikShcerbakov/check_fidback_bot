@@ -24,7 +24,7 @@ logging.basicConfig(
 
 
 TIME_SENDING_MESSAGE = 15
-TIME_CHECK_VENDOR_CODE = 10
+TIME_CHECK_VENDOR_CODE = 1
 ADMIN_LIST = [
     816283898,   # Дима
     815599051,   # Я
@@ -34,7 +34,7 @@ ADMIN_LIST = [
 def crutch(lst):
     while True:
         if len(lst) < 5:
-            lst.append('None')
+            lst.append(0)
         else:
             return lst
     
@@ -254,7 +254,7 @@ def func(message):
     elif message.text == 'Полный просмотр':
         answer = read_from_datebase()
         for line in answer:
-            bot.send_message(message.chat.id, f'{line[0]} {line[1]} {line[2:5]}')
+            bot.send_message(message.chat.id, f'{line[1]} {line[2:5]}')
         bot.send_message(
             message.chat.id, f'Время последней проверки: {line[-1]}')
             
