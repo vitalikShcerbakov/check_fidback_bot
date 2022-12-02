@@ -24,7 +24,7 @@ logging.basicConfig(
 
 
 TIME_SENDING_MESSAGE = 15
-TIME_CHECK_VENDOR_CODE = 10
+TIME_CHECK_VENDOR_CODE = 1
 ADMIN_LIST = [
     816283898,   # Дима
     815599051,   # Я
@@ -237,13 +237,26 @@ def func(message):
 
     elif message.text == 'Просмотр товаров с плохими отзывами':
         answer = read_from_datebase()
+        flag = True
+        
         for line in answer:
             fidback = list(map(int, line[2:5]))
             if [True for i in fidback if i < 4]:
+                flag = False
                 bot.send_message(message.chat.id, f'{line[1]} - есть плохой отзыв',)
                 print(line[1], line[2:5])
-            else:
-                bot.send_message(message.chat.id, 'Ok',)
+            
+        if flag:
+            bot.send_message(message.chat.id, 'Ok')
+            
+        last_data_check = datetime.strptime(str(line[-1]), "%Y-%m-%d %H:%M:%S")
+        delta = datetime.now() - last_data_check
+        answer = str(delta).split('.')[0]
+        hours, minutes, seconds = answer.split(':')
+        if int(hours):
+            minutes = (int(hours) * int(minutes)) + int(minutes)
+        bot.send_message(message.chat.id, f'Последняя проверка была {int(minutes)} мин. назад')
+
 
         # if all(list([True if val[3] == 'True' else False for val in answer])):
         #     bot.send_message(message.chat.id, 'Нет товаров c плохими отзывами 😉')
