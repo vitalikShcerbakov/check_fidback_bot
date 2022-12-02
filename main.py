@@ -24,7 +24,7 @@ logging.basicConfig(
 
 
 TIME_SENDING_MESSAGE = 15
-TIME_CHECK_VENDOR_CODE = 1
+TIME_CHECK_VENDOR_CODE = 10
 ADMIN_LIST = [
     816283898,   # Дима
     815599051,   # Я
