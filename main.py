@@ -261,13 +261,13 @@ def func(message):
             message.chat.id, f'Время последней проверки: {line[-1]}')
             
     
-    elif message.text == 'Удалить сообщения':
-        for i in range(int(message.message_id), 1, -1):
-            try:             
-                message.message_id = i
-                bot.delete_message(message.chat.id, message.message_id)
-            except Exception:
-                break
+    # elif message.text == 'Удалить сообщения':
+    #     for i in range(int(message.message_id), 1, -1):
+    #         try:             
+    #             message.message_id = i
+    #             bot.delete_message(message.chat.id, message.message_id)
+    #         except Exception:
+    #             break
 
 
     else:
