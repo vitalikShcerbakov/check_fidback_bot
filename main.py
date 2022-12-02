@@ -241,7 +241,9 @@ def func(message):
             fidback = list(map(int, line[2:5]))
             if [True for i in fidback if i < 4]:
                 bot.send_message(message.chat.id, f'{line[1]} - есть плохой отзыв',)
-                print(line[1], line[2:5])    
+                print(line[1], line[2:5])
+            else:
+                bot.send_message(message.chat.id, 'Ok',)
 
         # if all(list([True if val[3] == 'True' else False for val in answer])):
         #     bot.send_message(message.chat.id, 'Нет товаров c плохими отзывами 😉')
@@ -254,7 +256,7 @@ def func(message):
     elif message.text == 'Полный просмотр':
         answer = read_from_datebase()
         for line in answer:
-            bot.send_message(message.chat.id, f'{line[1]} {line[2:5]}')
+            bot.send_message(message.chat.id, f'{line[0]} {line[1]} {line[2:5]}')
         bot.send_message(
             message.chat.id, f'Время последней проверки: {line[-1]}')
             
